@@ -41,14 +41,14 @@ function App() {
     const valoresSire = sire
       .slice(1)
       .map((value) =>
-        `0${value["Tipo CP/Doc."]} ${value["Serie del CDP"]}-${value["Nro CP o Doc. Nro Inicial (Rango)"]}`
+        `${value["Nro Doc Identidad"]}-0${value["Tipo CP/Doc."]} ${value["Serie del CDP"]}-${value["Nro CP o Doc. Nro Inicial (Rango)"]}`
           .trim()
           .toLowerCase()
       );
 
     const valoresCompras = compras
       .slice(2)
-      .map((value) => (value["__EMPTY_1"] || "").trim().toLowerCase());
+      .map((value) => `${value["__EMPTY_2"]}-${(value["__EMPTY_1"] || "").trim().toLowerCase()}`);
 
     setCamposSire(valoresSire);
     setCamposCompras(valoresCompras);
@@ -58,6 +58,7 @@ function App() {
     const resultados = camposSire.filter(
       (value) => !camposCompras.includes(value)
     );
+    
     setResultadosFallos(resultados);
   };
   useEffect(() => {
@@ -72,6 +73,7 @@ function App() {
     }
   }, [camposSire, camposCompras]);
 
+  console.log(compras)
   return (
     <>
       <header className="">
