@@ -1,7 +1,9 @@
 import { useContext } from "react";
 import { Context } from "../Services/getFiles";
+
 function Navbar() {
   const { handleClick } = useContext(Context);
+
   return (
     <header className="">
       <nav className="  p-4 shadow-md">
